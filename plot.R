@@ -1,0 +1,6 @@
+library(ggplot2)
+dat <- read.table("plot.txt",head=T)
+dat$gene_expression_h <- sqrt(dat$gene_expression_h2)
+dat$iso_ratio_h <- sqrt(dat$iso_ratio_h2)
+p <- ggplot(dat, aes(gene_expression_h, iso_ratio_h)) + geom_point() + xlim(0, 1) + ylim(0, 1)
+ggsave("pointplot.png", plot=p, width=10, height=10)

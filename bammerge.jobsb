@@ -1,0 +1,9 @@
+#!/bin/bash --login
+cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/01.hisat2_mapping
+
+samtools merge -O BAM -@ 4 \
+ ${NAME}.bam \
+ ${inbams}
+
+cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/00.scripts
+scontrol show job $SLURM_JOB_ID

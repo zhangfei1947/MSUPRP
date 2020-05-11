@@ -1,0 +1,18 @@
+#!/bin/bash --login
+export PATH="/mnt/home/zhangf37/miniconda2/bin:$PATH"
+cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/13.rMATs_144sample
+NAME=ALL_1vsALL_2
+
+`ls *bam|grep -v 'L'|head -n 74|awk '{ORS=",";print$1}'|sed 's/,$/\n/g' > ALL_1.txt`
+`ls *bam|grep -v 'L'|sed '1,74d'|awk '{ORS=",";print$1}'|sed 's/,$/\n/g' > ALL_2.txt`
+
+rmats.py --b1 ALL_1.txt --b2 ALL_2.txt \
+ --gtf /mnt/home/zhangf37/Genomic/Sus_scrofa/ensembl_release97/Sus_scrofa.Sscrofa11.1.97.gtf \
+ --od /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/13.rMATs_144sample/$NAME \
+ -t paired \
+ --nthread 16 \
+ --readLength 125 \
+ --statoff
+
+cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/00.scripts/13.rMATs_144sample
+scontrol show job $SLURM_JOB_ID

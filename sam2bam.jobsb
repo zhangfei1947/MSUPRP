@@ -1,0 +1,7 @@
+#!/bin/bash --login
+
+cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/01.hisat2_mapping
+
+samtools view -b -F 4 -@ 4 -o ${NAME}.bam ${NAME}.sam
+
+scontrol show job $SLURM_JOB_ID
