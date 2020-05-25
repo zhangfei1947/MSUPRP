@@ -1,0 +1,46 @@
+#!/bin/bash --login
+
+if [ $STRANDED = "yes" ]; then
+  echo stranded stringtie
+
+  stringtie \
+  ${OUTPATH}/${SAMPLE}.sort.bam \
+  -o ${OUTPATH}/${SAMPLE}.stringtie.gtf \
+  -p 4 \
+  -G /mnt/home/zhangf37/Genomic/Sus_scrofa/ensembl_release97/Sus_scrofa.Sscrofa11.1.97.gff3 \
+  --rf \
+  -f 0.1 \
+  -m 200 \
+  -A ${OUTPATH}/${SAMPLE}.gene_abund.txt \
+  -C ${OUTPATH}/${SAMPLE}.cov_ref.gtf \
+  -a 10 \
+  -j 1 \
+  -c 2.5 \
+  -g 50 \
+  -M 0.95 \
+  -x MT \
+  > ${SAMPLE}.stringtie.log 2>&1
+
+else
+  echo non-stranded strinftie
+
+  stringtie \
+  ${OUTPATH}/${SAMPLE}.sort.bam \
+  -o ${OUTPATH}/${SAMPLE}.stringtie.gtf \
+  -p 4 \
+  -G /mnt/home/zhangf37/Genomic/Sus_scrofa/ensembl_release97/Sus_scrofa.Sscrofa11.1.97.gff3 \
+  -f 0.1 \
+  -m 200 \
+  -A ${OUTPATH}/${SAMPLE}.gene_abund.txt \
+  -C ${OUTPATH}/${SAMPLE}.cov_ref.gtf \
+  -a 10 \
+  -j 1 \
+  -c 2.5 \
+  -g 50 \
+  -M 0.95 \
+  -x MT \
+  > ${SAMPLE}.stringtie.log 2>&1
+
+fi
+
+scontrol show job $SLURM_JOB_ID > ${SAMPLE}.job.log
