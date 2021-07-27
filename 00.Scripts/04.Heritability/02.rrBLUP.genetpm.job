@@ -1,0 +1,9 @@
+#!/bin/bash --login
+
+Rscript 02.rrBLUP.genetpm.R \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/02.StringTie/04.tpm_filter/gene_tpm_distri/gene.tpm.distri.filter.for.eQTL.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/genotype.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/fixed.effects.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/04.Heritability
+
+scontrol show job $SLURM_JOB_ID >> 01.rrBLUP.AS.log
