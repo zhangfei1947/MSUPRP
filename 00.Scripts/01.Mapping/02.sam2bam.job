@@ -1,0 +1,22 @@
+#!/bin/bash --login
+
+#argumants: WORKDIR SAMPLE
+
+cd $WORKDIR
+#sam2bam and sort by coordinate
+for samfile in ${SAMPLE}*.sam
+do
+	samtools view -u ${samfile} | samtools sort -o ${samfile//sam/sort.bam}
+done
+sleep 1s
+
+#merge bam
+samtools merge ${SAMPLE}.sort.bam `ls ${SAMPLE}*sort.bam`
+sleep 1s
+
+#indexing bam
+samtools index ${SAMPLE}.sort.bam
+
+cd -
+cd 02.sam2bam.log
+scontrol show job $SLURM_JOB_ID  > ${SAMPLE}.sam2bam.log 2>&1

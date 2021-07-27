@@ -1,0 +1,22 @@
+#!/bin/bash --login
+
+stringtie \
+  ${BAMPATH}/${SAMPLE}.sort.bam \
+  -o ${OUTPATH}/${SAMPLE}.stringtie.gtf \
+  -p 1 \
+  -G /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/02.StringTie/02.stringtie_merge/stringtie_merge.gtf \
+  --rf \
+  -f 0.05 \
+  -m 200 \
+  -A ${OUTPATH}/${SAMPLE}.gene_abund.txt \
+  -C ${OUTPATH}/${SAMPLE}.cov_ref.gtf \
+  -a 10 \
+  -j 1 \
+  -c 2 \
+  -g 50 \
+  -M 0.95 \
+  -x MT \
+  -e \
+  > 03.${SAMPLE}.stringtie.log 2>&1
+  
+# -e Limits the processing of read alignments to only estimate and output the assembled transcripts matching the reference transcripts given with the -G option (requires -G, recommended for -B/-b). With this option, read bundles with no reference

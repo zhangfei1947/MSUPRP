@@ -1,0 +1,8 @@
+#!/bin/bash --login
+#count the junction mapped reads. For multiple mapping, we only count hte primary mapping, ignore all "Not primary alignment" alignment flag 256
+#argument: bamdir statdir sample
+
+
+
+file=${bamdir}/${sample}.sort.bam
+samtools view $file |awk -F '\t' 'BEGIN{j=0;t=0} {if($2<256 || ($2>512&&$2-512<256)){t++;if($6~/[0-9]+M[0-9]+N[0-9]+M/){j++}}} END{print "'${sample}'",t,j,j/t*100}' >> ${statdir}/junction_mapping_reads_stat.txt
