@@ -1,0 +1,18 @@
+#!/bin/bash --login
+export PATH="/mnt/home/zhangf37/miniconda2/bin:$PATH"
+DIR=/mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/01.mergegtf
+
+`ls /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/01.Mapping/01.hisat2_mapping/*sort.bam |grep -v "1833"|awk '{ORS=",";print$1}'|sed 's/,$/\n/g' > ${DIR}/bam_list.txt`
+
+run_rmats \
+ --b1 ${DIR}/bam_list.txt \
+ --gtf /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/02.StringTie/04.tpm_filter/stringtie_merge.filter.gtf \
+ --od ${DIR} \
+ --tmp ${DIR}/rmatstmp \
+ -t paired \
+ --nthread 6 \
+ --readLength 125 \
+ --libType fr-firststrand \
+ --statoff
+
+scontrol show job $SLURM_JOB_ID

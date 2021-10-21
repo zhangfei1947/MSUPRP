@@ -1,0 +1,13 @@
+#!/bin/bash --login
+
+Rscript 01.rrBLUP.AS.R \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/05.PSI_filter/SE/filter/SE.PSI.filter.nqt.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/05.PSI_filter/RI/filter/RI.PSI.filter.nqt.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/05.PSI_filter/MXE/filter/MXE.PSI.filter.nqt.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/05.PSI_filter/A5SS/filter/A5SS.PSI.filter.nqt.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/03.ASdetection/05.PSI_filter/A3SS/filter/A3SS.PSI.filter.nqt.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/genotype.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/fixed.effects.txt \
+  /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/04.Heritability
+
+scontrol show job $SLURM_JOB_ID >> 01.rrBLUP.AS.log

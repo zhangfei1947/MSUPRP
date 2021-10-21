@@ -1,0 +1,11 @@
+#!/bin/bash --login
+#argument: WKPATH
+
+gffcompare \
+  -r /mnt/home/zhangf37/Genomic/Sus_scrofa/ensembl_release97/Sus_scrofa.Sscrofa11.1.97.gtf \
+  -R \
+  -s /mnt/home/zhangf37/Genomic/Sus_scrofa/ensembl_release97/Sus_scrofa.Sscrofa11.1.dna_sm.toplevel.fa \
+  -o ${WKPATH}/mergegtf_compare \
+  -V \
+  ${WKPATH}/stringtie_merge.gtf \
+  > 02.02.gffcompare.log 2>&1
