@@ -1,7 +1,0 @@
-#!/bin/bash --login
-
-cd /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/10.stringtie_rrBLUP/144sample_stranded_PE125
-
-Rscript run_rrBLUP.R
-
-scontrol show job $SLURM_JOB_ID > run_rrBLUP.R.log

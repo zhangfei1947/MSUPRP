@@ -1,8 +1,0 @@
-#!/bin/bash --login
-
-
-samtools view -@ 4 -O BAM -o ${WORKDIR}/${SAMPLE}.bam ${FILES}
-date
-samtools sort -@ 4 -O BAM -o /mnt/scratch/zhangf37/PROJECT/20190813_MSUPRP/07.StringTie/${SAMPLE}.sort.bam ${WORKDIR}/${SAMPLE}.bam
-
-scontrol show job $SLURM_JOB_ID  > ${SAMPLE}.sam2bam.log 2>&1
